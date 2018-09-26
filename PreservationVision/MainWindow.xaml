@@ -1,0 +1,25 @@
+﻿<Window x:Name="window" x:Class="PreservationVision.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PreservationVision"
+        xmlns:convs="clr-namespace:PreservationVision.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" DataContext="{Binding Model, ElementName=window, Mode=OneWay}"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize" Background="#7F000000" AllowsTransparency="True">
+    <Window.Resources>
+        <ResourceDictionary>
+            <convs:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Converter="{StaticResource BoolToVisibilityConverter}" Path="IsVisibleWindow"/>
+    </Window.Visibility>
+    <Grid>
+        <Button x:Name="button" Content="Продолжить" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="button_Click"/>
+        <Label x:Name="label" Content="Отдохните - прогуляйтесь, или посмотрите в окно" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="120,134,117,190"/>
+        <Label x:Name="labelTime" Content="Осталось:" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="189,190,273,134"/>
+        <Label x:Name="labelTime_Copy" Content="{Binding TimeUntilEvent}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="257,190,205,134"/>
+    </Grid>
+</Window>
